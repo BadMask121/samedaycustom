@@ -1,3 +1,3 @@
-# portfolio
+# Same Day Custom
 
-My web portfolio made with Typescript, React, NextJS, WebGL and ThreeJS
+A dashboard template made with Typescript, React, NextJS
