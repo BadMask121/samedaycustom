@@ -1,0 +1,64 @@
+@mixin navImage($image) {
+	display: block;
+	content: "";
+	height: 30px;
+	width: 30px;
+	margin-left: 0.5rem;
+	padding-right: 1rem;
+	background: url($image) no-repeat;
+	background-size: contain;
+
+}
+.navigationContainer {
+	display: flex;
+	flex-direction: column;
+	background-color: $color-primary;
+
+	ul {
+		padding-inline-start: 1.5rem;
+
+		li {
+			color: #fff;
+			font-size: 0.9rem;
+			line-height: 3rem;
+			text-rendering: geometricPrecision;
+			border-bottom: 1px solid $color-primaryFade;
+			transition: all 400ms ease-in-out;
+		}
+
+		li:hover {
+			background-color: $color-secondary;
+			color: $color-primary;
+		}
+	}
+	ul{
+		&.close{
+			li{}
+		}
+	}
+
+	ul:not(.close) {
+		li {
+			display: flex;
+			align-items: center;
+		}
+		li:nth-child(1)::before {
+			@include navImage("/images/chat.svg");
+		}
+		li:nth-child(2)::before {
+			@include navImage("/images/time-left.svg");
+		}
+		li:nth-child(3)::before {
+			@include navImage("/images/file.svg");
+		}
+		li:nth-child(4)::before {
+			@include navImage("/images/shopping-cart.svg");
+		}
+		li:nth-child(5)::before {
+			@include navImage("/images/supply.svg");
+		}
+		li:nth-child(6)::before {
+			@include navImage("/images/chat.svg");
+		}
+	}
+}

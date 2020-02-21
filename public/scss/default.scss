@@ -1,0 +1,23 @@
+@import url("//db.onlinewebfonts.com/c/32d0ba9a82b15c3100ae9dd9e614ef11?family=Helvetica+Neue");
+$color-primary: #196bd8;
+$color-primaryLight: #529ded;
+$color-red: #ff0000;
+$color-secondary: #d7e9fc;
+$color-primaryFade: #0e58c4;
+
+@font-face {
+	font-family: Helvetica Bold;
+	src: url("../fonts/Helvetica\ Neu\ Bold.ttf");
+}
+@font-face {
+	font-family: Helvetica Medium;
+	src: url("../fonts/HelveticaNeue\ Medium.ttf");
+}
+@font-face {
+	font-family: Helvetica Light;
+	src: url("../fonts/HelveticaNeue\ Light.ttf");
+}
+@font-face {
+	font-family: Helvetica Thin;
+	src: url("../fonts/HelveticaNeue\ Thin.ttf");
+}

@@ -1,0 +1,101 @@
+.sideContentContainer {
+	height: inherit;
+	width: inherit;
+	.header {
+		position: fixed;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100vw;
+		height: 5rem;
+		background: #fff;
+		box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+		.logo {
+			display: block;
+			width: 8rem;
+			height: 50px;
+			background: url("/images/logo.svg") no-repeat;
+			background-size: contain;
+			margin: 2rem;
+		}
+
+		.menu {
+			margin-right: 16rem;
+
+			ul {
+				display: inline-flex;
+				.searchContainer {
+					.searchContent {
+						display: flex;
+						padding: 5px;
+						&::before {
+							display: block;
+							content: "";
+							width: 20px;
+							height: 30px;
+							border-right: 1px solid #ddd;
+							border-left: 1px solid #ddd;
+							align-items: center;
+							padding-right: 2rem;
+							margin-left: 0.5rem;
+							background: url("/images/magnifying-glass.svg")
+								no-repeat;
+							background-size: 20px 20px;
+							background-position-x: 15px;
+							background-position-y: 5px;
+						}
+
+						input[type="text"] {
+							display: none;
+							font-size: 1rem;
+							line-height: 1rem;
+							font-family: Helvetica Light;
+							border: none;
+							outline: none;
+							appearance: none;
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							-o-appearance: none;
+							transition: transform 1s ease-in-out;
+						}
+
+						&:hover {
+							border-bottom: 1px solid rgb(212, 208, 208);
+							&::before {
+								border: none;
+							}
+							input[type="text"] {
+								display: block;
+								transform: translateX(-100);
+							}
+						}
+					}
+				}
+			}
+
+			li:not(.searchContainer) {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding-left: 1rem;
+				padding-right: 1rem;
+				margin: 1rem;
+				height: fit-content;
+				min-height: 30px;
+				max-height: 30px;
+				font-size: 0.8rem;
+				font-family: Helvetica Light;
+				border-right: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+
+				&:nth-child(2) {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+				}
+			}
+		}
+	}
+}
