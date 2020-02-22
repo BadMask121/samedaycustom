@@ -85,6 +85,7 @@
 		display: grid;
 		grid-template-columns: inherit;
 		width: 100%;
+		min-width: 93vw;
 		padding-left: 3rem;
 		margin: 7rem 0rem 4rem 0rem;
 
@@ -197,11 +198,24 @@
 				}
 			}
 			.productionContainer {
+				// table tbody,
+				// table thead{
+				// 	display: block;
+				// }
+				// table tbody {
+				// 	overflow: auto;
+				// 	height: fit-content;
+				// 	max-height: 20rem;
+				// }
+
 				table {
+					width: 100%;
+					min-width: 50%;
 					border-collapse: separate;
 					border-spacing: 0 0.5em;
 					thead {
 						background: #eeeeee;
+						width: 100%;
 					}
 
 					th,
@@ -211,17 +225,29 @@
 						padding: 1rem 1rem 0.5rem 2rem;
 						font-size: 0.8rem;
 						width: fit-content;
+						min-width: 100px;
+						font-family: Helvetica Medium, sans-serif;
 					}
 
-					tr,
-					thead {
+					tr {
 						box-shadow: 2px 5px 10px
 							rgba($color: #000000, $alpha: 0.03);
+
+							&.deliveryMessageContainer{
+								i{
+									display: block;
+									content: '';
+								}
+							}
+					}
+					tr:hover {
+						box-shadow: 2px 5px 10px
+							rgba($color: #000000, $alpha: 0.05);
 					}
 					tbody {
 						.listImage {
 							display: flex;
-							padding: 2rem;
+							padding-right: 2rem;
 							align-items: center;
 							img {
 								height: 100px;

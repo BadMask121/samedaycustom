@@ -96,10 +96,29 @@ const ListData = ({
 				<img src={details.image} alt="" />
 				<p>{details.message}</p>
 			</td>
-			<td>{colors}</td>
-			<td>{quantity}</td>
-			<td>{printType}</td>
-			<td>{deliveryMethod.message}</td>
+			<td>
+				<Button
+					variantColor="teal"
+					variant="solid"
+					backgroundColor="#529DED"
+					size="sm"
+					_hover={{ backgroundColor: "#525EEE" }}
+				>
+					{colors}
+				</Button>
+			</td>
+			<td>
+				<b>{quantity}</b>
+			</td>
+			<td>
+				<b>{printType}</b>
+			</td>
+			<td className="deliveryMessageContainer">
+				<b>
+					<i />
+					{deliveryMethod.message}
+				</b>
+			</td>
 			<td>
 				{deliveryTime.date} <span>Time Left: {deliveryTime.time}</span>
 			</td>
@@ -108,6 +127,36 @@ const ListData = ({
 	</>
 );
 
+const ListTable = ({ item }) => (
+	<div className="productionContainer">
+		<table>
+			<thead>
+				<th>
+					<Checkbox backgroundColor="#fff" />
+				</th>
+				<th>Order #</th>
+				<th>Item #</th>
+				<th>Details</th>
+				<th>Colors</th>
+				<th>Qty</th>
+				<th>Print Type</th>
+				<th>Delivery Method</th>
+				<th>Delivery Time</th>
+				<th>Production Status</th>
+			</thead>
+
+			<tbody>
+				{item.length !== 0 ? (
+					item.map(element => (
+						<ListData key={element.id} {...element} />
+					))
+				) : (
+					<></>
+				)}
+			</tbody>
+		</table>
+	</div>
+);
 export default ({ isNavOpen }: Props) => {
 	return (
 		<div className="sideContentContainer">
@@ -149,7 +198,7 @@ export default ({ isNavOpen }: Props) => {
 							<TabList className="tabsLayer">
 								<TabList>
 									<Tab>
-										All Productions{" "}
+										All Productions
 										<span
 											style={{
 												color: "#ddd",
@@ -221,47 +270,16 @@ export default ({ isNavOpen }: Props) => {
 
 							<TabPanels>
 								<TabPanel>
-									<p>one!</p>
+									<ListTable item={dummydata} />
 								</TabPanel>
 								<TabPanel>
-									<p>two!</p>
+									<ListTable item={[]} />
 								</TabPanel>
 								<TabPanel>
-									<p>three!</p>
+									<ListTable item={dummydata} />
 								</TabPanel>
 							</TabPanels>
 						</Tabs>
-					</div>
-					<div className="productionContainer">
-						<table>
-							<thead>
-								<th>
-									<Checkbox backgroundColor="#fff" />
-								</th>
-								<th>Order #</th>
-								<th>Item #</th>
-								<th>Details</th>
-								<th>Colors</th>
-								<th>Qty</th>
-								<th>Print Type</th>
-								<th>Delivery Method</th>
-								<th>Delivery Time</th>
-								<th>Production Status</th>
-							</thead>
-
-							<tbody>
-								{dummydata.length !== 0 ? (
-									dummydata.map(element => (
-										<ListData
-											key={element.id}
-											{...element}
-										/>
-									))
-								) : (
-									<></>
-								)}
-							</tbody>
-						</table>
 					</div>
 				</div>
 			</div>
@@ -274,7 +292,7 @@ export default ({ isNavOpen }: Props) => {
 						padding-right: ${isNavOpen ? "14rem" : "3rem"};
 					}
 					.content {
-						padding-right: ${isNavOpen ? "14rem" : "3rem"};
+						padding-right: ${isNavOpen ? "11rem" : "0rem"};
 					}
 				`}
 			</style>
