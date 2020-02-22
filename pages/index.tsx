@@ -22,22 +22,25 @@ const customTheme = {
 };
 export default (): ReactNode => {
 	const [state, setstate] = useState({
-		isNavOpen: true,
+		isNavOpen: false,
 	});
+
+	const openNav = (condition: boolean) => setstate({ isNavOpen: condition });
 
 	const { isNavOpen } = state;
 	return (
 		<ThemeProvider theme={customTheme}>
 			<CSSReset />
 			<div className="mainContainer">
-				<Navigation {...{ isNavOpen }} />
-				<SideContent />
+				<Navigation {...{ isNavOpen }} {...{ openNav }} />
+				<SideContent {...{ isNavOpen }} />
 			</div>
-			<style>
+			<style jsx>
 				{`
 					.mainContainer {
 						display: grid;
-						grid-template-columns: 15rem 1fr;
+						grid-template-columns: ${(isNavOpen && "15rem") ||
+								"4rem"} 1fr;
 						grid-row-gap: 1rem;
 						height: inherit;
 						width: inherit;

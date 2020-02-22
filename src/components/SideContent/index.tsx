@@ -10,7 +10,7 @@ import {
 	Tag,
 	Button,
 	TagLabel,
-	Checkbox
+	Checkbox,
 } from "@chakra-ui/core";
 
 import IconNotification from "../Icon/IconNotification";
@@ -18,6 +18,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconImage from "../Icon/IconImage";
 import Search from "../Search";
 import Select from "../Select";
+import { dummydata } from "../../helpers/dummydata";
+
+interface Props {
+	isNavOpen: boolean;
+}
 
 const Menu = () => (
 	<div className="menu">
@@ -58,7 +63,52 @@ const Menu = () => (
 	</div>
 );
 
-export default () => {
+interface ListItemProps {
+	orderId: number;
+	itemId: number;
+	details: { image: string; message: string };
+	colors: HTMLButtonElement | string;
+	quantity: string;
+	printType: string;
+	deliveryMethod: { type: string; message: string };
+	deliveryTime: { date: string; time: string };
+	productionStatus: string;
+}
+const ListData = ({
+	colors,
+	deliveryMethod,
+	deliveryTime,
+	details,
+	itemId,
+	orderId,
+	printType,
+	productionStatus,
+	quantity,
+}: ListItemProps) => (
+	<>
+		<tr>
+			<td>
+				<Checkbox />
+			</td>
+			<td>{orderId}</td>
+			<td>{itemId}</td>
+			<td className="listImage">
+				<img src={details.image} alt="" />
+				<p>{details.message}</p>
+			</td>
+			<td>{colors}</td>
+			<td>{quantity}</td>
+			<td>{printType}</td>
+			<td>{deliveryMethod.message}</td>
+			<td>
+				{deliveryTime.date} <span>Time Left: {deliveryTime.time}</span>
+			</td>
+			<td>{productionStatus}</td>
+		</tr>
+	</>
+);
+
+export default ({ isNavOpen }: Props) => {
 	return (
 		<div className="sideContentContainer">
 			<div className="header">
@@ -186,7 +236,7 @@ export default () => {
 						<table>
 							<thead>
 								<th>
-									<Checkbox backgroundColor="#fff"/>
+									<Checkbox backgroundColor="#fff" />
 								</th>
 								<th>Order #</th>
 								<th>Item #</th>
@@ -200,59 +250,34 @@ export default () => {
 							</thead>
 
 							<tbody>
-								<tr>
-									<td>
-										<Checkbox defaultIsChecked/>
-									</td>
-									<td>#032jk8298392</td>
-									<td>#032jk8298392</td>
-									<td className="listImage">
-										<img src="/images/sample.jpg" alt="" />
-										<p>Hello welcome to this work</p>
-									</td>
-									<td>
-										<button>Royal</button>
-									</td>
-									<td>L x 4</td>
-									<td>DTG Print</td>
-									<td>Rush Shipping</td>
-									<td>
-										23-june-2019{" "}
-										<span>Time Left: 10:00:00</span>
-									</td>
-									<td>Running 2 of 5</td>
-								</tr>
-								<tr>
-									<td>
-										<input
-											type="checkbox"
-											name="vehicle1"
-											value="Bike"
+								{dummydata.length !== 0 ? (
+									dummydata.map(element => (
+										<ListData
+											key={element.id}
+											{...element}
 										/>
-									</td>
-									<td>#032jk8298392</td>
-									<td>#032jk8298392</td>
-									<td className="listImage">
-										<img src="/images/sample.jpg" alt="" />
-										<p>Hello welcome to this work</p>
-									</td>
-									<td>
-										<button>Royal</button>
-									</td>
-									<td>L x 4</td>
-									<td>DTG Print</td>
-									<td>Rush Shipping</td>
-									<td>
-										23-june-2019
-										<span>Time Left: 10:00:00</span>
-									</td>
-									<td>Running 2 of 5</td>
-								</tr>
+									))
+								) : (
+									<></>
+								)}
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
+			<style jsx>
+				{`
+					.sideContentContainer {
+						padding-left: ${isNavOpen ? "14rem" : "3rem"};
+					}
+					.header {
+						padding-right: ${isNavOpen ? "14rem" : "3rem"};
+					}
+					.content {
+						padding-right: ${isNavOpen ? "14rem" : "3rem"};
+					}
+				`}
+			</style>
 		</div>
 	);
 };

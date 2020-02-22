@@ -7,14 +7,111 @@
 	margin-right: 1.5rem;
 	background: url($image) no-repeat;
 	background-size: contain;
+	cursor: pointer;
 }
 
 .navigationContainer {
+	position: fixed;
 	display: flex;
+	height: 100%;
+	z-index: 99999;
 	flex-direction: column;
 	background-color: $color-primary;
 
+	//when navigation closes
+	&.nav-close {
+		ul,
+		li {
+			transition: all 400ms ease-in-out;
+		}
+		.close {
+			li {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				margin-top: 3rem;
+				.IconImage {
+					display: block;
+					content: "";
+					height: 25px;
+					width: 25px;
+					background: url("/images/humburg.svg") no-repeat;
+					background-size: contain;
+					transition: transform 200ms ease-in-out;
+				}
+				.IconImage:hover {
+					color: #ddd;
+					transform: scale(0.8);
+					cursor: pointer;
+				}
+			}
+		}
+		ul:not(.close) {
+			margin-top: 5rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			li {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				height: 50px;
+				width: 50px;
+				justify-content: center;
+				border-radius: 50%;
+			}
+			li span {
+				display: none;
+			}
+			li:hover {
+				background-color: #ddd;
+				cursor: pointer;
+			}
+
+			li i {
+				height: 25px !important;
+				width: 25px !important;
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+				min-height: 0;
+			}
+
+			li:nth-child(1) {
+				i {
+					@include navImage("/images/dashboard.svg");
+				}
+			}
+
+			li:nth-child(2) {
+				i {
+					@include navImage("/images/time-left.svg");
+				}
+			}
+
+			li:nth-child(3) i {
+				@include navImage("/images/file.svg");
+			}
+
+			li:nth-child(4) i {
+				@include navImage("/images/shopping-cart.svg");
+			}
+
+			li:nth-child(5) i {
+				@include navImage("/images/supply.svg");
+			}
+
+			li:nth-child(6) i {
+				@include navImage("/images/chat.svg");
+			}
+		}
+	}
+
+	// when navigation open
+
 	&.nav-open {
+		width: 17%;
 		ul {
 			padding-inline-start: 0rem;
 			li {
@@ -27,18 +124,18 @@
 				transition: all 400ms ease-in-out;
 			}
 		}
-		ul {
-			&.close {
-				padding-inline-start: 0;
 
-				li {
-					padding-top: 1rem;
-					padding-bottom: 1rem;
+		.close {
+			padding-inline-start: 0;
+
+			li {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+
+				.IconImage {
+					transition: transform 800ms ease-in-out;
 				}
-				.iconImage {
-					transition: transform 1s ease-in-out;
-				}
-				.iconImage:hover {
+				.IconImage:hover {
 					color: #ddd;
 					transform: scale(0.8) rotate(360deg);
 					cursor: pointer;
@@ -47,6 +144,7 @@
 		}
 
 		ul:not(.close) {
+			margin-top: 5rem;
 			li:hover {
 				background-color: $color-secondary;
 				color: $color-primary;
@@ -60,12 +158,16 @@
 				align-items: center;
 			}
 
-			li:nth-child(1)::before {
-				@include navImage("/images/chat.svg");
+			li i {
+				min-height: 0;
+			}
+
+			li:nth-child(1) i {
+				@include navImage("/images/dashboard.svg");
 			}
 
 			li:nth-child(2) {
-				&::before {
+				i {
 					@include navImage("/images/time-left.svg");
 				}
 
@@ -82,19 +184,19 @@
 				}
 			}
 
-			li:nth-child(3)::before {
+			li:nth-child(3) i {
 				@include navImage("/images/file.svg");
 			}
 
-			li:nth-child(4)::before {
+			li:nth-child(4) i {
 				@include navImage("/images/shopping-cart.svg");
 			}
 
-			li:nth-child(5)::before {
+			li:nth-child(5) i {
 				@include navImage("/images/supply.svg");
 			}
 
-			li:nth-child(6)::before {
+			li:nth-child(6) i {
 				@include navImage("/images/chat.svg");
 			}
 		}
