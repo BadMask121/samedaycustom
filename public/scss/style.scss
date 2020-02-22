@@ -9,13 +9,6 @@ body,
 	height: 100%;
 	font-family: Helvetica Medium, sans-serif;
 }
-.mainContainer {
-	display: grid;
-	grid-template-columns: 15rem 1fr;
-	grid-row-gap: 1rem;
-	height: inherit;
-	width: inherit;
-}
 
 @import "./Navigation/index.scss";
 @import "./SideContent/index.scss";
