@@ -3,7 +3,36 @@ import { Checkbox, Button } from "@chakra-ui/core";
 import { useRouter } from "next/router";
 import { toBase64 } from "../../../helpers";
 
-interface ListItemProps {
+export const ListImageWithHover = ({ details }) => {
+	return (
+		<td className="listImage">
+			<div className="imageContainer">
+				<img src={details.image} alt="product image" />
+				<div className="detailsContainer">
+					<div>
+						<img src={details.image} alt={"product image"} />
+						<p>Front</p>
+					</div>
+					<div>
+						<img src={details.image} alt="product Image" />
+						<p>Back</p>
+					</div>
+					<div>
+						<img src={details.image} alt="product image" />
+						<p>Side</p>
+					</div>
+					<div>
+						<img src={details.image} alt="product image" />
+						<p>Side</p>
+					</div>
+				</div>
+			</div>
+			<p>{details.message}</p>
+		</td>
+	);
+};
+
+export interface ListItemProps {
 	orderId: number;
 	itemId: number;
 	details: { image: string; message: string };
@@ -42,33 +71,7 @@ export default (item: ListItemProps) => {
 				</td>
 				<td>#{orderId}</td>
 				<td>#{itemId}</td>
-				<td className="listImage">
-					<div className="imageContainer">
-						<img src={details.image} alt="product image" />
-						<div className="detailsContainer">
-							<div>
-								<img
-									src={details.image}
-									alt={"product image"}
-								/>
-								<p>Front</p>
-							</div>
-							<div>
-								<img src={details.image} alt="product Image" />
-								<p>Back</p>
-							</div>
-							<div>
-								<img src={details.image} alt="product image" />
-								<p>Side</p>
-							</div>
-							<div>
-								<img src={details.image} alt="product image" />
-								<p>Side</p>
-							</div>
-						</div>
-					</div>
-					<p>{details.message}</p>
-				</td>
+				<ListImageWithHover details={details} />
 				<td>
 					<Button
 						variantColor="teal"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { List, ListItem } from "@chakra-ui/core";
 
 import IconNotification from "../Icon/IconNotification";
@@ -6,12 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconImage from "../Icon/IconImage";
 import Search from "../Search";
 import Footer from "../Footer";
-import DashboardContent from "./DashboardContent";
 
 import { PageTransition } from "next-page-transitions";
 import { useRouter } from "next/router";
-import ProductContent from "./ProductContent";
-
+import dynamic from "next/dynamic";
+// import ProductContent from "./ProductContent";
+// import DashboardContent from "./DashboardContent";
+const ProductContent = dynamic(() => import("./ProductContent"), {
+	ssr: false,
+});
+const DashboardContent = dynamic(() => import("./DashboardContent"), {
+	ssr: false,
+});
 interface Props {
 	isNavOpen: boolean;
 }
@@ -65,11 +71,20 @@ export default ({ isNavOpen, ...props }: Props) => {
 			</div>
 
 			<div className="content">
-				<PageTransition timeout={400} classNames="page-transition">
+				<PageTransition
+					timeout={400}
+					classNames={`${
+						route.query["id"] ? "swiperight" : "swipeleft"
+					}`}
+				>
 					{route.query["id"] ? (
+						// <Suspense fallback={<>Loading</>}>
 						<ProductContent key={route.route} />
 					) : (
+						// </Suspense>
+						// <Suspense fallback={<>Loading</>}>
 						<DashboardContent key={route.route} />
+						// </Suspense>
 					)}
 				</PageTransition>
 			</div>
@@ -85,19 +100,48 @@ export default ({ isNavOpen, ...props }: Props) => {
 					.content {
 						margin-right: ${isNavOpen ? "11rem" : "0rem"};
 					}
-					.page-transition-enter {
+
+					.swipeleft-enter {
 						opacity: 0;
+						transform: translateX(20px);
+						transition: opacity 1s, transform 1s;
+						transform-style: preserve-3d;
 					}
-					.page-transition-enter-active {
+
+					.swipeleft-enter-active {
 						opacity: 1;
-						transition: opacity 300ms;
+						transform: translateX(0px);
+						transition: opacity 1s, transform 1s;
 					}
-					.page-transition-exit {
+					.swipeleft-enter-active {
 						opacity: 1;
+						transform: translateX(0px);
+						transition: opacity 1s, transform 1s;
 					}
-					.page-transition-exit-active {
+
+					.swiperight-enter {
 						opacity: 0;
-						transition: opacity 300ms;
+						transform: translateX(-20px);
+						transition: opacity 1s, transform 1s;
+						transform-style: preserve-3d;
+					}
+
+					.swiperight-enter-active,
+					.swiperight-enter-done {
+						opacity: 1;
+						transform: translateX(0px);
+						transition: opacity 1s, transform 1s;
+					}
+					.swiperight-exit {
+						opacity: 1;
+						transform: translateX(0px);
+						transition: opacity 1s, transform 1s;
+					}
+					.swiperight-exit-active {
+						opacity: 0;
+						transform: translateX(-20px);
+						transition: opacity 1s, transform 1s;
+						transform-style: preserve-3d;
 					}
 				`}
 			</style>

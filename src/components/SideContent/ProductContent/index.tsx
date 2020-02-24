@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Select from "../../Select";
 import {
 	Tabs,
 	TabList,
@@ -11,9 +10,90 @@ import {
 	TabPanels,
 	TabPanel,
 	Icon,
+	Checkbox,
 } from "@chakra-ui/core";
+import * as _ from "lodash";
+import Select from "../../Select";
 import ListTable from "../../List/ListTable";
+import { ListImageWithHover, ListItemProps } from "../../List/ListData";
+import { fromBase64 } from "../../../helpers";
 
+interface IconCheck {
+	color?: string;
+	size?: string;
+}
+const IconCheck = ({ color, size, ...props }: IconCheck) => (
+	<i className="iconCheck" {...props}>
+		<Icon
+			name="check"
+			color={`${color || "#fff"}`}
+			fontSize={`${size || "12px"}`}
+		/>
+	</i>
+);
+const ListItem = ({ details: item }) => {
+	if (_.isEmpty(item)) return <></>;
+	const {
+		colors,
+		details,
+		itemId,
+		printType,
+		quantity,
+	}: ListItemProps = item;
+	return (
+		<tr>
+			<td>
+				<Checkbox />
+			</td>
+			<td>#{itemId}</td>
+			<ListImageWithHover details={details} />
+			<td>
+				<b>{printType}</b>
+			</td>
+			<td>
+				<Button
+					variantColor="teal"
+					variant="solid"
+					backgroundColor="#529DED"
+					size="sm"
+					_hover={{ backgroundColor: "#525EEE" }}
+				>
+					{colors}
+				</Button>
+			</td>
+			<td>
+				<b>{quantity}</b>
+			</td>
+
+			<td className="deliveryMessageContainer">
+				<IconCheck />
+				<b>Paid in full</b>
+			</td>
+		</tr>
+	);
+};
+
+const ListTableContent = ({ item }) => (
+	<div className="productionContainer">
+		<table>
+			<thead>
+				<th>
+					<Checkbox backgroundColor="#fff" />
+				</th>
+				<th>Item #</th>
+				<th>Details</th>
+				<th>Production Type</th>
+				<th>Colors</th>
+				<th>Quantity</th>
+				<th>Paid</th>
+			</thead>
+
+			<tbody>
+				<ListItem {...item} />
+			</tbody>
+		</table>
+	</div>
+);
 const ReviewCardContainer = () => (
 	<div className="reviewCardContainer">
 		<div className="orderValue">
@@ -55,9 +135,7 @@ const ReviewCardContainer = () => (
 		<div>
 			<p>Rush Option</p>
 			<p className="rushoption">
-				<i>
-					<Icon name="check" color="#fff" fontSize="12px" />
-				</i>
+				<IconCheck />
 				Rush
 			</p>
 		</div>
@@ -81,7 +159,49 @@ const ReviewCardContainer = () => (
 	</div>
 );
 
-const TabContent = () => (
+const ProductDetailsContent = details => (
+	<div className="productDetailsContainer">
+		<div className="productDetailsTopTitle">
+			<p>Product</p>
+			<Button
+				variantColor="teal"
+				variant="outline"
+				size="sm"
+				fontSize={11}
+				color="#007bff"
+				className="addNote"
+			>
+				Download ArtWork
+			</Button>
+		</div>
+		<div className="productionDetailsContent">
+			<div>
+				<img
+					src={"/images/sample.jpg"}
+					alt={"front facing product image"}
+				/>
+				<p>Front</p>
+			</div>
+			<div>
+				<img
+					src={"/images/sample.jpg"}
+					alt="back facing product Image"
+				/>
+				<p>Back</p>
+			</div>
+			<div>
+				<img src={"/images/sample.jpg"} alt="side product image" />
+				<p>Side</p>
+			</div>
+			<div>
+				<img src={"/images/sample.jpg"} alt="Side product image" />
+				<p>Side</p>
+			</div>
+		</div>
+		<ListTableContent item={details} />
+	</div>
+);
+const TabContent = ({ details }) => (
 	<div className="tableLayerContainer">
 		<div className="tabsContainer">
 			<Tabs className="tabs">
@@ -116,8 +236,8 @@ const TabContent = () => (
 							variantColor="teal"
 							variant="outline"
 							size="sm"
-                            fontSize={11}
-                            className="addNote"
+							fontSize={11}
+							className="addNote"
 						>
 							Add Note
 						</Button>
@@ -131,20 +251,32 @@ const TabContent = () => (
 
 				<TabPanels className="tabpanels">
 					<TabPanel>
-						<ListTable item={[]} />
+						<ProductDetailsContent {...{ details }} />
 					</TabPanel>
-					<TabPanel>
-						<ListTable item={[]} />
-					</TabPanel>
+					<TabPanel>{/* <ListTable item={[details]} /> */}</TabPanel>
 				</TabPanels>
 			</Tabs>
 		</div>
 	</div>
 );
-export default () => {
+export default props => {
+	const [loaded, setloaded] = React.useState(false);
 	const Router = useRouter();
+	const { token } = Router.query;
 
+	const details = (token && JSON.parse(fromBase64(token.toString()))) || {};
 	const goHome = () => Router.push("/", "/", { shallow: true });
+
+	// const setLoaded = () => {
+	// 	props.pageTransitionReadyToEnter();
+	// 	setloaded(true);
+	// };
+
+	// React.useEffect(() => {
+	// 	const timer = setTimeout(setLoaded, 1000);
+	// 	return () => clearTimeout(timer);
+	// }, [props]);
+
 	return (
 		<div className="productContentContainer">
 			<div className="topLayerContainer">
@@ -164,7 +296,7 @@ export default () => {
 				</div>
 			</div>
 			<ReviewCardContainer />
-			<TabContent />
+			<TabContent {...{ details }} />
 		</div>
 	);
 };
