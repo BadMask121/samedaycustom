@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
+		"deploy": "npm run build && now --prod",
 		"start": "next start"
 	},
 	"keywords": [],
