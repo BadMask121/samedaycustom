@@ -55,7 +55,7 @@ const Menu = () => (
 			</ListItem>
 			<ListItem className="userProfileIconContainer">
 				<IconImage image="/images/sample.jpg" />
-				<span>Me</span>
+				<span>Me</span>x`
 			</ListItem>
 		</List>
 	</div>
