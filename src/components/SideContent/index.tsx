@@ -78,13 +78,9 @@ export default ({ isNavOpen, ...props }: Props) => {
 					}`}
 				>
 					{route.query["id"] ? (
-						// <Suspense fallback={<>Loading</>}>
 						<ProductContent key={route.route} />
 					) : (
-						// </Suspense>
-						// <Suspense fallback={<>Loading</>}>
 						<DashboardContent key={route.route} />
-						// </Suspense>
 					)}
 				</PageTransition>
 			</div>
