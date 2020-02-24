@@ -18,6 +18,49 @@
 	flex-direction: column;
 	background-color: $color-primary;
 
+	ul {
+		li {
+			color: #fff;
+		}
+		&:nth-child(2) {
+			li:nth-child(1) {
+				i {
+					@include navImage("/images/dashboard.svg");
+				}
+			}
+
+			li:nth-child(2) {
+				i {
+					@include navImage("/images/time-left.svg");
+				}
+			}
+
+			li:nth-child(3) i {
+				@include navImage("/images/file.svg");
+			}
+
+			li:nth-child(4) i {
+				@include navImage("/images/shopping-cart.svg");
+			}
+
+			li:nth-child(5) i {
+				@include navImage("/images/supply.svg");
+			}
+
+			li:nth-child(6) i {
+				@include navImage("/images/chat.svg");
+			}
+		}
+		&:nth-child(3) {
+			color: #000;
+
+			li {
+				i {
+					@include navImage("/images/Settings.svg");
+				}
+			}
+		}
+	}
 	//when navigation closes
 	&.nav-close {
 		ul,
@@ -66,7 +109,7 @@
 				display: none;
 			}
 			li:hover {
-				background-color: #ddd;
+				background-color: $color-primaryFade;
 				cursor: pointer;
 			}
 
@@ -76,34 +119,6 @@
 				margin-left: 0 !important;
 				margin-right: 0 !important;
 				min-height: 0;
-			}
-
-			li:nth-child(1) {
-				i {
-					@include navImage("/images/dashboard.svg");
-				}
-			}
-
-			li:nth-child(2) {
-				i {
-					@include navImage("/images/time-left.svg");
-				}
-			}
-
-			li:nth-child(3) i {
-				@include navImage("/images/file.svg");
-			}
-
-			li:nth-child(4) i {
-				@include navImage("/images/shopping-cart.svg");
-			}
-
-			li:nth-child(5) i {
-				@include navImage("/images/supply.svg");
-			}
-
-			li:nth-child(6) i {
-				@include navImage("/images/chat.svg");
 			}
 		}
 	}
@@ -133,11 +148,11 @@
 				padding-bottom: 1rem;
 
 				.IconImage {
-					transition: transform 800ms ease-in-out;
+					transition: transform 400ms ease-in-out;
 				}
 				.IconImage:hover {
 					color: #ddd;
-					transform: scale(0.8) rotate(360deg);
+					transform: scale(0.8) rotate(90deg);
 					cursor: pointer;
 				}
 			}
@@ -161,16 +176,7 @@
 			li i {
 				min-height: 0;
 			}
-
-			li:nth-child(1) i {
-				@include navImage("/images/dashboard.svg");
-			}
-
 			li:nth-child(2) {
-				i {
-					@include navImage("/images/time-left.svg");
-				}
-
 				&:hover {
 					&::after {
 						float: right;
@@ -182,22 +188,6 @@
 						);
 					}
 				}
-			}
-
-			li:nth-child(3) i {
-				@include navImage("/images/file.svg");
-			}
-
-			li:nth-child(4) i {
-				@include navImage("/images/shopping-cart.svg");
-			}
-
-			li:nth-child(5) i {
-				@include navImage("/images/supply.svg");
-			}
-
-			li:nth-child(6) i {
-				@include navImage("/images/chat.svg");
 			}
 		}
 	}

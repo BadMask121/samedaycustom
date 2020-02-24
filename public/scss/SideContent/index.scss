@@ -1,6 +1,9 @@
 .sideContentContainer {
-	height: inherit;
-	width: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
 	.header {
 		position: fixed;
 		display: flex;
@@ -198,16 +201,6 @@
 				}
 			}
 			.productionContainer {
-				// table tbody,
-				// table thead{
-				// 	display: block;
-				// }
-				// table tbody {
-				// 	overflow: auto;
-				// 	height: fit-content;
-				// 	max-height: 20rem;
-				// }
-
 				table {
 					width: 100%;
 					min-width: 50%;
@@ -225,20 +218,20 @@
 						padding: 1rem 1rem 0.5rem 2rem;
 						font-size: 0.8rem;
 						width: fit-content;
-						min-width: 100px;
 						font-family: Helvetica Medium, sans-serif;
 					}
 
 					tr {
 						box-shadow: 2px 5px 10px
 							rgba($color: #000000, $alpha: 0.03);
+						cursor: pointer;
 
-							&.deliveryMessageContainer{
-								i{
-									display: block;
-									content: '';
-								}
+						&.deliveryMessageContainer {
+							i {
+								display: block;
+								content: "";
 							}
+						}
 					}
 					tr:hover {
 						box-shadow: 2px 5px 10px
@@ -247,12 +240,66 @@
 					tbody {
 						.listImage {
 							display: flex;
-							padding-right: 2rem;
 							align-items: center;
-							img {
-								height: 100px;
-								width: 100px;
-								padding: 20px;
+							justify-content: center;
+							min-width: 300px;
+
+							.imageContainer {
+								display: block;
+								padding-right: 1rem;
+								.detailsContainer {
+									position: absolute;
+									display: none;
+									justify-content: space-between;
+									width: 50%;
+									background: #18354c;
+									border-radius: 5px;
+									box-shadow: 0px 0px 10px
+										rgba($color: #000000, $alpha: 0.1);
+									opacity: 0;
+									transition: opacity 200ms linear,
+										transform 1s linear;
+									padding: 2rem;
+									margin-left: 5rem;
+									margin-top: -4rem;
+									z-index: 1;
+
+									div {
+										display: flex;
+										flex-direction: column;
+										align-items: center;
+										justify-content: center;
+
+										p {
+											color: #fff;
+											font-weight: bold;
+										}
+
+										img {
+											height: 200px;
+											width: 200px;
+											margin-bottom: 10px;
+										}
+									}
+								}
+								&:hover {
+									.detailsContainer {
+										display: grid;
+										opacity: 1;
+										grid-template-columns: repeat(
+											auto-fit,
+											minmax(5rem, 1fr)
+										);
+										grid-gap: 20px;
+									}
+								}
+								img {
+									display: block;
+									height: 80px;
+									width: auto;
+									min-width: 70px;
+									min-height: 50px;
+								}
 							}
 						}
 					}

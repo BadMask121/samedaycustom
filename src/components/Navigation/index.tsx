@@ -59,6 +59,12 @@ export default ({ isNavOpen, openNav }) => {
 					<span>Forums</span>
 				</ListItem>
 			</List>
+			<List>
+				<ListItem>
+					<IconNotification content="1" backgroundColor="red" />
+					<span>Settings</span>
+				</ListItem>
+			</List>
 		</div>
 	);
 };

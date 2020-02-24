@@ -7,8 +7,10 @@ body,
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: Helvetica Medium, sans-serif;
+	font-family: Helvetica Neue, sans-serif;
+    letter-spacing: -0.3px;
 }
 
 @import "./Navigation/index.scss";
 @import "./SideContent/index.scss";
+@import "./Footer/index.scss";

@@ -3,8 +3,8 @@ import * as faker from "faker";
 const dataArray = new Array(10);
 
 dataArray.fill({
-	orderId: `#${faker.random.uuid()}`,
-	itemId: `#${faker.random.uuid()}`,
+	orderId: `${faker.random.uuid()}`,
+	itemId: `${faker.random.uuid()}`,
 	details: {
 		image: "/images/sample.jpg",
 		message: faker.random.words(10),
@@ -17,8 +17,8 @@ dataArray.fill({
 		message: "Rush Shipping" || "Pickup Order",
 	},
 	deliveryTime: {
-		date: faker.date.future(2021).toUTCString(),
-		time: new Date().getTime(),
+		date: "23 - June - 2019",
+		time: "10:00:00",
 	},
 	productionStatus: "Running 3 of 5",
 });

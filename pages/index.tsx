@@ -1,12 +1,12 @@
 import React, { ReactNode, useState } from "react";
-import Head from "next/head";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
+import { theme } from "@chakra-ui/core";
+import { useRouter } from "next/router";
 import { Navigation, SideContent } from "../src/components";
 library.add(fab, fas);
-import { theme } from "@chakra-ui/core";
 
 // Let's say you want to add custom colors
 const customTheme = {
@@ -24,6 +24,7 @@ export default (): ReactNode => {
 	const [state, setstate] = useState({
 		isNavOpen: false,
 	});
+	const router = useRouter();
 
 	const openNav = (condition: boolean) => setstate({ isNavOpen: condition });
 
@@ -32,8 +33,8 @@ export default (): ReactNode => {
 		<ThemeProvider theme={customTheme}>
 			<CSSReset />
 			<div className="mainContainer">
-				<Navigation {...{ isNavOpen }} {...{ openNav }} />
-				<SideContent {...{ isNavOpen }} />
+				<Navigation {...{ isNavOpen }} {...{ openNav }} {...router} />
+				<SideContent {...{ isNavOpen }} {...router} />
 			</div>
 			<style jsx>
 				{`
