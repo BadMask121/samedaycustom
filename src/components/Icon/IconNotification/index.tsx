@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
-
 interface Prop {
 	image?: string;
 	content: string;
@@ -28,14 +26,15 @@ export default ({ image, content, backgroundColor, color, children }: Prop) => {
 					i::before {
 						display: flex;
 						align-items: center;
+						text-align:center;
 						justify-content: center;
 						content: "${content}";
 						background: ${backgroundColor || "#196bd8"};
 						border-radius: 50%;
                         width: fit-content;
-                        min-width: 10px;
+                        min-width: 13px;
                         height: fit-content;
-                        min-height: 10px;
+                        max-height: 13px;
                         padding: ${(content.length > 1 && 2) || 1}px;
 						float: right;
 						color: ${color || "#fff"};

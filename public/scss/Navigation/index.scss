@@ -1,64 +1,194 @@
-@mixin navImage($image) {
+@mixin navImage($image, $height: 25px, $width: 25px) {
 	display: block;
 	content: "";
-	height: 30px;
-	width: 30px;
+	height: $height;
+	width: $width;
 	margin-left: 0.5rem;
-	padding-right: 1rem;
+	margin-right: 1.5rem;
 	background: url($image) no-repeat;
 	background-size: contain;
-
+	cursor: pointer;
 }
+
 .navigationContainer {
+	position: fixed;
 	display: flex;
+	height: 100%;
+	z-index: 99999;
 	flex-direction: column;
 	background-color: $color-primary;
 
 	ul {
-		padding-inline-start: 1.5rem;
-
 		li {
 			color: #fff;
-			font-size: 0.9rem;
-			line-height: 3rem;
-			text-rendering: geometricPrecision;
-			border-bottom: 1px solid $color-primaryFade;
+		}
+		&:nth-child(2) {
+			li:nth-child(1) {
+				i {
+					@include navImage("/images/dashboard.svg");
+				}
+			}
+
+			li:nth-child(2) {
+				i {
+					@include navImage("/images/time-left.svg");
+				}
+			}
+
+			li:nth-child(3) i {
+				@include navImage("/images/file.svg");
+			}
+
+			li:nth-child(4) i {
+				@include navImage("/images/shopping-cart.svg");
+			}
+
+			li:nth-child(5) i {
+				@include navImage("/images/supply.svg");
+			}
+
+			li:nth-child(6) i {
+				@include navImage("/images/chat.svg");
+			}
+		}
+		&:nth-child(3) {
+			color: #000;
+
+			li {
+				i {
+					@include navImage("/images/Settings.svg");
+				}
+			}
+		}
+	}
+	//when navigation closes
+	&.nav-close {
+		ul,
+		li {
 			transition: all 400ms ease-in-out;
 		}
-
-		li:hover {
-			background-color: $color-secondary;
-			color: $color-primary;
+		.close {
+			li {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				margin-top: 3rem;
+				.IconImage {
+					display: block;
+					content: "";
+					height: 25px;
+					width: 25px;
+					background: url("/images/humburg.svg") no-repeat;
+					background-size: contain;
+					transition: transform 200ms ease-in-out;
+				}
+				.IconImage:hover {
+					color: #ddd;
+					transform: scale(0.8);
+					cursor: pointer;
+				}
+			}
 		}
-	}
-	ul{
-		&.close{
-			li{}
-		}
-	}
-
-	ul:not(.close) {
-		li {
+		ul:not(.close) {
+			margin-top: 5rem;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
+			justify-content: center;
+
+			li {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				height: 50px;
+				width: 50px;
+				justify-content: center;
+				border-radius: 50%;
+			}
+			li span {
+				display: none;
+			}
+			li:hover {
+				background-color: $color-primaryFade;
+				cursor: pointer;
+			}
+
+			li i {
+				height: 25px !important;
+				width: 25px !important;
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+				min-height: 0;
+			}
 		}
-		li:nth-child(1)::before {
-			@include navImage("/images/chat.svg");
+	}
+
+	// when navigation open
+
+	&.nav-open {
+		width: 17%;
+		ul {
+			padding-inline-start: 0rem;
+			li {
+				color: #fff;
+				font-size: 0.9rem;
+				line-height: 3rem;
+				padding-inline-start: 1rem;
+				text-rendering: geometricPrecision;
+				border-bottom: 1px solid $color-primaryFade;
+				transition: all 400ms ease-in-out;
+			}
 		}
-		li:nth-child(2)::before {
-			@include navImage("/images/time-left.svg");
+
+		.close {
+			padding-inline-start: 0;
+
+			li {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+
+				.IconImage {
+					transition: transform 400ms ease-in-out;
+				}
+				.IconImage:hover {
+					color: #ddd;
+					transform: scale(0.8) rotate(90deg);
+					cursor: pointer;
+				}
+			}
 		}
-		li:nth-child(3)::before {
-			@include navImage("/images/file.svg");
-		}
-		li:nth-child(4)::before {
-			@include navImage("/images/shopping-cart.svg");
-		}
-		li:nth-child(5)::before {
-			@include navImage("/images/supply.svg");
-		}
-		li:nth-child(6)::before {
-			@include navImage("/images/chat.svg");
+
+		ul:not(.close) {
+			margin-top: 5rem;
+			li:hover {
+				background-color: $color-secondary;
+				color: $color-primary;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+				cursor: pointer;
+			}
+			li {
+				display: flex;
+				align-items: center;
+			}
+
+			li i {
+				min-height: 0;
+			}
+			li:nth-child(2) {
+				&:hover {
+					&::after {
+						float: right;
+						justify-self: flex-end;
+						@include navImage(
+							"/images/arrow-b-down-primary.svg",
+							15px,
+							15px
+						);
+					}
+				}
+			}
 		}
 	}
 }

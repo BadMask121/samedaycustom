@@ -1,0 +1,106 @@
+@mixin iconSize($image, $height: 25px, $width: 25px) {
+	display: block;
+	content: "";
+	height: $height;
+	width: $width;
+	background: url($image) no-repeat;
+	background-size: contain;
+}
+.footer {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	background: #f4f7f6;
+	grid-gap: 4rem;
+	width: 100%;
+	min-width: 95vw;
+	padding: 3rem;
+	font-family: "Nunito Sans", sans-serif;
+
+	.download {
+		display: flex;
+		flex-direction: column;
+		p {
+			color: $color-primaryLight;
+			font-weight: bold;
+		}
+		.downloadLinks {
+			display: inline-flex;
+			width: 55%;
+			justify-content: space-between;
+			padding-top: 2rem;
+			.icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				background: #d2d4d4;
+				border-radius: 50%;
+				padding: 10px;
+				height: fit-content;
+				min-height: 70px;
+				width: fit-content;
+				min-width: 70px;
+
+				.apple::after {
+					display: block;
+					content: "";
+					height: 30px;
+					width: 30px;
+					@include iconSize("/images/apple.svg", 30px, 30px);
+					background-size: contain;
+				}
+				.playstore::after {
+					@include iconSize(
+						"/images/google-play-store.svg",
+						30px,
+						30px
+					);
+				}
+			}
+		}
+	}
+
+	.description {
+		font-size: 14px;
+		letter-spacing: 0px;
+		font-weight: 400;
+
+		.links {
+			color: $color-primaryLight;
+			padding-top: 2rem;
+			a {
+				padding-right: 2rem;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.contactus {
+		p {
+			color: $color-primaryLight;
+			font-weight: bold;
+		}
+
+		.socialLinks {
+			display: inline-flex;
+			width: 55%;
+			justify-content: space-between;
+			padding-top: 3rem;
+			.icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				height: fit-content;
+				width: fit-content;
+				.twitter::after {
+					@include iconSize("/images/twitter.svg");
+				}
+				.facebook::after {
+					@include iconSize("/images/facebook.svg");
+				}
+				.instagram::after {
+					@include iconSize("/images/instagram.svg");
+				}
+			}
+		}
+	}
+}
