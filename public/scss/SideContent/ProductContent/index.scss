@@ -110,18 +110,9 @@
 				font-size: 0.9rem;
 				color: $color-primaryLighter;
 			}
-			// .rushoption {
-			// 	i {
-			// 		display: inline-flex;
-			// 		background: red;
-			// 		align-items: center;
-			// 		justify-content: center;
-			// 		height: 20px;
-			// 		width: 20px;
-			// 		border-radius: 50%;
-			// 		margin-right: 10px;
-			// 	}
-			// }
+			.rushoption {
+				margin-left: 10px;
+			}
 			.requestTime {
 				p:first-child {
 					font-size: 0.9rem;
@@ -146,8 +137,7 @@
 			align-items: center;
 			padding-top: 0.5rem;
 			color: $color-primaryLighter;
-			font-size: 0.9rem;
-
+			font-size: 0.7rem;
 			padding-right: 15px;
 			select {
 				option:nth-child(even) {
@@ -177,7 +167,7 @@
 						}
 					}
 					.actionContainer {
-						width: 45%;
+						width: 50%;
 
 						.addNote {
 							padding: 0rem 1rem 0 1rem;

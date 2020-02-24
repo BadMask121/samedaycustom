@@ -12,10 +12,9 @@
 	background: #f4f7f6;
 	grid-gap: 4rem;
 	width: 100%;
-	min-width: 95vw;
+	min-width: 94.9vw;
 	padding: 3rem;
 	font-family: "Nunito Sans", sans-serif;
-
 	.download {
 		display: flex;
 		flex-direction: column;
@@ -25,7 +24,7 @@
 		}
 		.downloadLinks {
 			display: inline-flex;
-			width: 55%;
+			width: 65%;
 			justify-content: space-between;
 			padding-top: 2rem;
 			.icon {

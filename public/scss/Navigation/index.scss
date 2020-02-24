@@ -52,8 +52,7 @@
 			}
 		}
 		&:nth-child(3) {
-			color: #000;
-
+			margin-top: 3rem !important;
 			li {
 				i {
 					@include navImage("/images/Settings.svg");
@@ -90,7 +89,7 @@
 			}
 		}
 		ul:not(.close) {
-			margin-top: 5rem;
+			margin-top: 3rem;
 			display: flex;
 			flex-direction: column;
 			align-items: center;

@@ -55,7 +55,7 @@ const Menu = () => (
 			</ListItem>
 			<ListItem className="userProfileIconContainer">
 				<IconImage image="/images/sample.jpg" />
-				<span>Me</span>x`
+				<span>Me</span>
 			</ListItem>
 		</List>
 	</div>
@@ -88,10 +88,10 @@ export default ({ isNavOpen, ...props }: Props) => {
 			<style jsx global>
 				{`
 					.sideContentContainer {
-						padding-left: ${isNavOpen ? "15rem" : "3rem"};
+						padding-left: ${isNavOpen ? "13rem" : "3rem"};
 					}
 					.header {
-						padding-right: ${isNavOpen ? "14rem" : "3rem"};
+						padding-right: ${isNavOpen ? "12rem" : "3rem"};
 					}
 					.content {
 						margin-right: ${isNavOpen ? "11rem" : "0rem"};
