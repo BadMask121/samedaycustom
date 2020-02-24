@@ -1,0 +1,182 @@
+.productContentContainer {
+	letter-spacing: -0.3px;
+
+	.topLayerContainer {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		.topTitle {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			width: 26%;
+			padding-bottom: 2rem;
+			.backBtn {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				width: 45px;
+				height: 45px;
+				background: $color-primary;
+				border-radius: 50%;
+				&::before {
+					display: block;
+					content: "";
+					width: 25px;
+					height: 25px;
+					background: url("/images/right-arrow.svg") no-repeat;
+					background-size: contain;
+					background-position-y: 2px;
+				}
+				cursor: pointer;
+			}
+			span {
+				@include fontNunito();
+				font-size: 1.05rem;
+				color: rgba(0, 0, 0, 0.3);
+				font-weight: bold;
+				padding-right: 15px;
+				border-right: 1px solid rgba(0, 0, 0, 0.3);
+			}
+		}
+
+		.orderId {
+			font-weight: bold;
+			font-family: Helvetica Medium, sans-serif;
+		}
+		.breadcrumb {
+			display: flex;
+			justify-content: space-between;
+			color: $color-primaryLighter;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			font-size: 0.7rem;
+			@include fontNunito();
+			font-weight: bold;
+			letter-spacing: 0px;
+			p:last-child {
+				font-size: 0.9rem;
+
+				span {
+					font-size: 1rem;
+					color: red;
+				}
+			}
+		}
+	}
+	.reviewCardContainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+		grid-gap: 1rem;
+		width: 100%;
+		height: 8rem;
+		max-height: 10rem;
+		box-shadow: 0px 3px 50px #0000000f;
+		padding: 2rem;
+		font-family: Helvetica Medium, sans-serif;
+
+		.orderValue {
+			display: flex;
+			&::before {
+				display: block;
+				content: "";
+				height: 17px;
+				width: 17px;
+				margin-right: 10px;
+				margin-top: 3px;
+				background: url("/images/shopping-cart-menu.svg") no-repeat;
+				background-size: contain;
+			}
+		}
+		div {
+			p:first-child {
+				font-weight: bold;
+				color: rgba(0, 0, 0, 0.7);
+			}
+			p:last-child {
+				padding-top: 0.5rem;
+				font-size: 0.9rem;
+				color: $color-primaryLighter;
+			}
+			.rushoption {
+				i {
+					display: inline-flex;
+					background: red;
+					align-items: center;
+					justify-content: center;
+					height: 20px;
+					width: 20px;
+					border-radius: 50%;
+					margin-right: 10px;
+				}
+			}
+			.requestTime {
+				p:first-child {
+					font-size: 0.9rem;
+
+					font-weight: normal;
+					padding-top: 0.5rem;
+					color: $color-primaryLighter;
+				}
+				p:last-child {
+					color: rgba(0, 0, 0, 0.3);
+
+					span {
+						color: red;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.deliveryMethodPick {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding-top: 0.5rem;
+			color: $color-primaryLighter;
+			font-size: 0.9rem;
+
+			padding-right: 15px;
+			select {
+				option:nth-child(even) {
+					background: #fff;
+					color: #000;
+				}
+				option:nth-child(odd) {
+					background: #eeeeee;
+					color: #000;
+				}
+			}
+		}
+    }
+    .tableLayerContainer{
+        .tabsContainer{
+            .tabs{
+                .tabsLayer{
+                    .tabLayerList{
+                        letter-spacing: -2px;
+                    }
+                    .actionContainer{
+                        width: 45%;
+
+                        .addNote{
+                            &::before{
+                                display: block;
+				content: "";
+				height: 17px;
+				width: 17px;
+				margin-right: 10px;
+				margin-top: 3px;
+				background: url("/images/file-m.svg") no-repeat;
+				background-size: contain;
+                            }
+                        }
+                    }
+                }
+                .tabpanels{}
+            }
+        }
+    }
+}

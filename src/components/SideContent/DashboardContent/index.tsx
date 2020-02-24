@@ -92,6 +92,7 @@ export default () => {
 									variantColor="teal"
 									variant="outline"
 									size="sm"
+									fontSize={11}
 								>
 									Print worksheet
 								</Button>

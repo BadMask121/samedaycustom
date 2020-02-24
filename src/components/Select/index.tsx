@@ -17,7 +17,12 @@ export default ({
 	...props
 }: Props) => (
 	<div className="selectContainer">
-		<select {...props} aria-lang="en" aria-label="select button" style={style}>
+		<select
+			{...props}
+			aria-lang="en"
+			aria-label="select button"
+			style={style}
+		>
 			{children}
 		</select>
 
@@ -32,6 +37,7 @@ export default ({
 					min-width: 10rem;
 					padding: 10px;
 					padding-left: 15px;
+					padding-right: 20px;
 					font-size: 0.8rem;
 					font-family: Helvetica Medium, sans-serif;
 					border: 0;
@@ -42,6 +48,9 @@ export default ({
 						no-repeat right ${backgroundColor || "#196bd8"};
 					-webkit-appearance: none;
 					background-size: 15px 15px;
+				}
+				select::-ms-expand {
+					display: none;
 				}
 			`}
 		</style>

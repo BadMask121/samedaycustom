@@ -74,7 +74,7 @@ export default ({ isNavOpen, ...props }: Props) => {
 				</PageTransition>
 			</div>
 			<Footer />
-			<style jsx>
+			<style jsx global>
 				{`
 					.sideContentContainer {
 						padding-left: ${isNavOpen ? "15rem" : "3rem"};
